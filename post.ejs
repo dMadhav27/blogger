@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= post.title %></title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    
+    <center>
+    <div class="post-card">
+        <div class="post-card-header">
+            <h1 style="justify-content: center;"><%= post.title %></h1><br>
+            <textarea disabled id="content" name="content" rows="4" oninput="countWords()" required><%= post.content %></textarea>
+            <% if (post.image_path) { %>
+              <img src="<%= post.image_path %>" alt="Post Image">
+            <% } %>
+        </div>
+        <p class="timestamp" style="font-size: 12px; color: gray; text-align: center;">penned on <%= post.created_at.toLocaleString() %></p><br><br>
+        <a href="/edit_post/<%= post.id %>">Edit</a><span>  |  </span>
+
+  <a href="/">Back to Home</a>
+  
+        </div>
+      </div>
+    </center>
+    
+    
+    
+  
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!-- edit_post.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madhav Unplugged | Edit Post</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <center>
+  <div class="edit-card">
+    <p id="write"><h1>Edit Post</h1></p>
+  
+  <form action="/edit_post/<%= post.id %>" method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="<%= post.title %>" required>
+    <br>
+    <label for="content">Content:</label>
+    <textarea id="content" name="content" rows="4" required><%= post.content %></textarea>
+    <br>
+    <button type="submit" style="border-radius: 5px; padding: 10px; font-size:20px">Update</button><br>
+  </form><br>
+  <a href="/post/<%= post.id %>">Back to Post</a>
+</center>
+</div>
+</body>
+</html>

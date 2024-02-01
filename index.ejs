@@ -1,0 +1,87 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madhav Unplugged | Home</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <!-- Add this in the head section -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <style>
+    .icon-space {
+      margin-right: 10px; /* Adjust the margin as needed */
+    }
+    .maincard {
+      max-height: 300px; /* Adjust the maximum height as needed */
+      overflow-y: hidden;
+    }
+    
+    .card-links {
+      overflow-y: auto;
+      max-height: 240px; /* Adjust the maximum height as needed */
+    }
+  </style>
+  
+</head>
+<body>
+  <center>
+    <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 50px;
+    color: #ffffff;">Madhav Unplugged</p>
+    <p style="font-size: 20px; color: #ffffff; font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">A collection of insights I gain daily while living life...</p>
+
+    <div class="maincard">
+      <div class="card-header">
+        <h2>My words...</h2>
+      </div>
+      <div class="card-links">
+        <ul>
+          <% posts.reverse().forEach(post => { %>
+            <li>
+              <a href="/post/<%= post.id %>" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 20px" ><%= post.title %></a>
+              <p class="timestamp" style="color:#ad97df; font-size:12px"><%= post.created_at.toLocaleString() %></p>
+              
+              <a href="/edit_post/<%= post.id %>">Edit</a><span>  |  </span>
+              <form method="post" action="/delete_post/<%= post.id %>" style="display:inline;">
+                <button type="submit" style="border-radius: 5px; padding: 10px; font-size:14px">Delete</button>
+              </form>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    </div>
+    <br>
+
+    <a href="/add_post" style="color: aliceblue;">Write a new one...</a><br><br>
+    <a href="/contact" style="color: aliceblue;">Contact Madhav...</a>
+
+
+    
+
+   
+  </center>
+
+  <!-- footer.ejs -->
+  <div class="down-footer">
+    <footer class="footer mt-auto py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p style="color: rgb(124, 170, 197);">&copy; 2023 Madhav Dhobley</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <!-- Social Media Icons -->
+            <a href="https://twitter.com/d_Madhav27" target="_blank"><i class="fab fa-twitter"></i></a><span class="icon-space"></span>
+            <a href="https://www.instagram.com/safar.mein.hoon/" target="_blank"><i class="fab fa-instagram"></i></a><span class="icon-space"></span>
+            <a href="https://www.linkedin.com/in/madhav-dhobley-438b8b262/" target="_blank"><i class="fab fa-linkedin"></i></a><span class="icon-space"></span>
+            <a href="https://www.facebook.com/profile.php?id=100093575425984" target="_blank"><i class="fab fa-facebook"></i></a><span class="icon-space"></span>
+            <a href="https://www.youtube.com/channel/UCPJ7UDOfrlZND1RyyEnpEXA" target="_blank"><i class="fab fa-youtube"></i></a><span class="icon-space"></span>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>

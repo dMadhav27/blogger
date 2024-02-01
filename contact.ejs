@@ -1,0 +1,28 @@
+<!-- contact.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Madhav</title>
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+  <center>
+
+    <div class="contact">
+    <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 50px; color: #ffffff;">Contact Madhav</p>
+
+    <form method="post" action="/contact">
+      <label for="name" style="color: white">Your Name:</label>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="message" style="color: white">Your Message:</label>
+      <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br> 
+
+      <button type="submit" style="border-radius: 5px; padding: 10px; font-size:16px">Send Message</button>
+    </form>
+</div>
+  </center>
+</body>
+</html>

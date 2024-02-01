@@ -1,0 +1,60 @@
+// Display the registration form
+app.get('/register', (req, res) => {
+  res.render('register');
+});
+
+// Handle user registration
+app.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+
+  // Hash the password before storing it in the database
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  // Insert user details into the database
+  db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword], (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.redirect('/login');
+    }
+  });
+});
+
+// Display the login form
+app.get('/login', (req, res) => {
+  res.render('login');
+});
+
+// Handle user login
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // Retrieve user from the database based on the username
+  db.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      if (results.length > 0) {
+        // Compare the provided password with the hashed password from the database
+        const match = await bcrypt.compare(password, results[0].password);
+        if (match) {
+          // Store user information in the session
+          req.session.user = results[0];
+          res.redirect('/');
+        } else {
+          res.send('<script>alert("Incorrect password!"); window.location="/login";</script>');
+        }
+      } else {
+        res.send('<script>alert("User not found!"); window.location="/login";</script>');
+      }
+    }
+  });
+});
+
+// Logout
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});

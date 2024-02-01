@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Madhav Unplugged | Add a Post</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var contentInput = document.getElementById('content');
+
+      contentInput.addEventListener('input', function() {
+        countWords();
+      });
+
+      function countWords() {
+        var content = contentInput.value;
+        var words = content.split(/\s+/).filter(function(word) {
+          return word.length > 0;
+        }).length;
+        document.getElementById('wordCount').textContent = 'Word count: ' + words;
+      }
+    });
+  </script>
+</head>
+<body>
+  
+  <center>
+  <div class="addpostcard">
+    <p id="writesome">Write something...</p>
+    <form action="/add_post" method="post">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" required>
+      <br>
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" rows="4" required></textarea>
+      <!-- Add a file input for image -->
+  <label for="image">Upload Image:</label>
+  <input type="file" id="image" name="image" accept="image/*">
+  <br>
+      <br>
+     <div id="wordCount">Word count: 0</div>
+      <br>
+      <button type="submit" style="border-radius: 5px; padding: 10px; font-size:20px">Push!</button>
+    </form><br>
+    <a href="/">Back to Home</a>
+  </div>
+</center>
+
+</body>
+</html>
